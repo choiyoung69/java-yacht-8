@@ -10,7 +10,6 @@ public class Wind {
     private double speed;
     private double direction;
     private final WindConfig config;
-    private final Random random = new Random();
 
     public Wind(double speed, double direction, WindConfig config) {
         this.speed = speed;
@@ -20,5 +19,20 @@ public class Wind {
 
     public static Wind initalizeWind(WindConfig windConfig) {
         return new Wind(INITIAL_WIND_SPEED, INITIAL_WIND_DIRECTION, windConfig);
+    }
+
+
+    //시간(s)에 따른 자연변화
+    public void updateNatural(double rawSpeedNoise, double rawDirectionNoise) {
+        double deltaSpeed = rawSpeedNoise * config.speedVariability();
+        double deltaDirection = rawDirectionNoise * config.directionVariability();
+
+        this.speed += deltaSpeed;
+        this.direction = normalize(this.direction + deltaDirection);
+    }
+
+    private static double normalize(double angle) {
+        double a = angle % 360;
+        return (a < 0) ? a + 360 : a;
     }
 }

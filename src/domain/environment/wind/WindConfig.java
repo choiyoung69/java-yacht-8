@@ -7,5 +7,5 @@ public record WindConfig (
     double gustChance,  //돌풍 발생 확률
     double lullChance,  //약풍 발생 확률
     double shiftChance, //풍향 급변 확률
-    double turbulenceChance, //난류 발생 확률
+    double turbulenceChance //난류 발생 확률
 ) { }
