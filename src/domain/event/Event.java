@@ -9,7 +9,7 @@ public class Event {
         this.message = message;
     }
 
-    public static create(EventType, String message) {
-        return new Event(EventType, message);
+    public static Event create(EventType eventType, String message) {
+        return new Event(eventType, message);
     }
 }
