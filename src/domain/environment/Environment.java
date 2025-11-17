@@ -35,33 +35,7 @@ public class Environment {
         }
     }
 
-    private void triggerRandomEvents() {
-        if (wind.isGustTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_GUST,
-                    "🌪 갑작스러운 돌풍이 몰아칩니다!"
-            );
-        }
-
-        if (wind.isLullTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_LULL,
-                    "🌫 바람이 약해져 배가 느려질 수 있습니다."
-            );
-        }
-
-        if (wind.isShiftTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_RANDOM_SHIFT,
-                    "💨 풍향이 예기치 못하게 변하려 합니다!"
-            );
-        }
-
-        if (wind.isTurbulenceTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_TURBULENCE,
-                    "💥 난류로 인해 풍향과 풍속이 불안정해집니다!"
-            );
-        }
+    public Wind wind() {
+        return wind;
     }
 }
