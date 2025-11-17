@@ -2,8 +2,8 @@ package domain.event;
 
 public class EventOption {
     private final String message;
-    private final Boolean correct;
-    private final EventEffect eventEffect;
+    private final boolean correct;
+    private final EventEffect effect;
 
     public EventOption(String message, boolean correct, EventEffect effect) {
         this.message = message;
