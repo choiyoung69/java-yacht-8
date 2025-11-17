@@ -15,7 +15,6 @@ public class Wind {
     private double lastDeltaDirection;  // 방향 변화량
 
     private final WindConfig config;
-    private final Random random =  new Random();
 
     public Wind(double speed, double direction, WindConfig config) {
         this.speed = speed;
@@ -28,9 +27,9 @@ public class Wind {
     }
 
     //시간(s)에 따른 자연변화
-    public void updateNatural() {
-        double dSpeed = noise() * config.speedVariability();
-        double dDirection   = noise() * config.directionVariability();
+    public void updateNatural(Random random) {
+        double dSpeed = noise(random) * config.speedVariability();
+        double dDirection = noise(random) * config.directionVariability();
 
         this.lastDeltaSpeed = dSpeed;
         this.lastDeltaDirection = dDirection;
@@ -40,7 +39,7 @@ public class Wind {
     }
 
     //-0.5 ~ 0.5 값을 생성
-    private double noise() {
+    private double noise(Random random) {
         return random.nextDouble() - 0.5;
     }
 
@@ -60,19 +59,19 @@ public class Wind {
         return Math.abs(lastDeltaDirection) >= config.directionThreshold();
     }
 
-    public boolean isGustTriggered() {
+    public boolean isGustTriggered(Random random) {
         return random.nextDouble() < config.gustChance();
     }
 
-    public boolean isLullTriggered() {
+    public boolean isLullTriggered(Random random) {
         return random.nextDouble() < config.lullChance();
     }
 
-    public boolean isShiftTriggered() {
+    public boolean isShiftTriggered(Random random) {
         return random.nextDouble() < config.shiftChance();
     }
 
-    public boolean isTurbulenceTriggered() {
+    public boolean isTurbulenceTriggered(Random random) {
         return random.nextDouble() < config.turbulenceChance();
     }
 
