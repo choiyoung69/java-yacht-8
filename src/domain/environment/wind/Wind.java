@@ -5,7 +5,7 @@ import jdk.jshell.execution.JdiDefaultExecutionControl;
 
 public class Wind {
     //초기 풍향, 방향 고정
-    private static final double INITIAL_WIND_SPEED = 10.0;
+    private static final double INITIAL_WIND_SPEED = 5.0;
     private static final double INITIAL_WIND_DIRECTION = 0.0;
 
     private double speed;
@@ -55,5 +55,21 @@ public class Wind {
 
     public boolean isDirectionJump() {
         return Math.abs(lastDeltaDirection) >= config.directionThreshold();
+    }
+
+    public boolean isGustTriggered() {
+        return random.nextDouble() < config.gustChance();
+    }
+
+    public boolean isLullTriggered() {
+        return random.nextDouble() < config.lullChance();
+    }
+
+    public boolean isShiftTriggered() {
+        return random.nextDouble() < config.shiftChance();
+    }
+
+    public boolean isTurbulenceTriggered() {
+        return random.nextDouble() < config.turbulenceChance();
     }
 }
