@@ -44,9 +44,12 @@ public class Wind {
         return random.nextDouble() - 0.5;
     }
 
-    private static double normalize(double angle) {
-        double a = angle % 360;
-        return (a < 0) ? a + 360 : a;
+    private static double normalize(double rawAngle) {
+        double angle = rawAngle % 360;
+        if (angle < 0) {
+            return angle + 360;
+        }
+        return angle;
     }
 
     public boolean isSpeedJump() {
@@ -71,5 +74,13 @@ public class Wind {
 
     public boolean isTurbulenceTriggered() {
         return random.nextDouble() < config.turbulenceChance();
+    }
+
+    public double getLastDeltaSpeed() {
+        return lastDeltaSpeed;
+    }
+
+    public double getLastDeltaDirection() {
+        return lastDeltaDirection;
     }
 }
