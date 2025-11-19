@@ -1,0 +1,52 @@
+{
+  "type": "WIND_SPEED_DOWN",
+  "description": "🌫 바람이 갑자기 약해졌습니다.",
+
+  "correct": {
+    "EASY": [
+      {
+        "text": "약해진 바람을 다시 잘 받도록 돛줄을 더 당겨 세일을 채운다.",
+        "stability": 5,
+        "power": 5
+      }
+    ],
+    "MEDIUM": [
+      {
+        "text": "배를 세우고 돛줄을 당겨 세일이 바람을 잃지 않게 유지한다.",
+        "stability": 6,
+        "power": 7
+      }
+    ],
+    "HARD": [
+      {
+        "text": "약풍에서 가장 잘 나가는 각도를 만들어 돛줄과 키를 미세 조정한다.",
+        "stability": 7,
+        "power": 9
+      }
+    ]
+  },
+
+  "wrong": {
+    "EASY": [
+      { "text": "돛줄을 더 풀어 세일을 자유롭게 둔다.", "stability": -6, "power": -10 },
+      { "text": "방향만 계속 바꾼다.", "stability": -4, "power": -7 },
+      { "text": "몸을 바깥으로 빼서 균형을 잡으려 한다.", "stability": -5, "power": -5 },
+      { "text": "세일을 고정해두고 바람을 기다린다.", "stability": -3, "power": -6 }
+    ],
+    "MEDIUM": [
+      { "text": "돛줄을 풀어 세일을 펄럭이게 둔다.", "stability": -7, "power": -9 },
+      { "text": "선수를 바람 쪽으로 급히 돌린다.", "stability": -8, "power": -6 },
+      { "text": "몸을 안쪽으로 너무 깊게 넣는다.", "stability": -5, "power": -8 },
+      { "text": "돛줄을 고정하고 키만 조작한다.", "stability": -4, "power": -5 },
+      { "text": "세일을 급하게 풀었다 당겼다 반복한다.", "stability": -6, "power": -7 }
+    ],
+    "HARD": [
+      { "text": "돛줄을 놓아버린다.", "stability": -11, "power": -10 },
+      { "text": "정면 바람을 받으려고 바람 쪽으로 크게 돌린다.", "stability": -7, "power": -12 },
+      { "text": "세일을 여러 번 강하게 풀어본다.", "stability": -10, "power": -8 },
+      { "text": "좌우로 크게 선회해 새 바람을 찾으려 한다.", "stability": -9, "power": -8 },
+      { "text": "세일을 고정하고 몸만 움직인다.", "stability": -8, "power": -9 },
+      { "text": "세일을 아래로 완전히 떨어뜨린다.", "stability": -12, "power": -6 }
+    ]
+  }
+}
