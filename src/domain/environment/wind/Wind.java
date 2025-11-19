@@ -1,7 +1,6 @@
 package domain.environment.wind;
 
 import java.util.Random;
-import jdk.jshell.execution.JdiDefaultExecutionControl;
 
 public class Wind {
     //초기 풍향, 방향 고정

@@ -1,0 +1,52 @@
+{
+  "type": "WIND_SPEED_UP",
+  "description": "🌬 바람이 갑자기 강해졌습니다.",
+
+  "correct": {
+    "EASY": [
+      {
+        "text": "강해진 바람을 줄이기 위해 돛줄을 조금 풀어 배가 눕지 않게 한다.",
+        "stability": 8,
+        "power": -3
+      }
+    ],
+    "MEDIUM": [
+      {
+        "text": "돛줄을 살짝 풀고 몸을 바깥으로 내밀어 강해진 바람에 배 균형을 맞춘다.",
+        "stability": 10,
+        "power": -5
+      }
+    ],
+    "HARD": [
+      {
+        "text": "돛줄 텐션을 즉시 낮추고 키 각도를 조절해 강풍에서도 안정적으로 자세를 잡는다.",
+        "stability": 12,
+        "power": -6
+      }
+    ]
+  },
+
+  "wrong": {
+    "EASY": [
+      { "text": "돛줄을 더 당겨 바람을 더 받는다.", "stability": -15, "power": -8 },
+      { "text": "배가 눕지 않게 하려고 키를 갑자기 크게 돌린다.", "stability": -10, "power": -5 },
+      { "text": "세일을 고정하고 자세만 바꾼다.", "stability": -12, "power": -3 },
+      { "text": "몸을 더 안쪽으로 넣어 버틴다.", "stability": -18, "power": -2 }
+    ],
+    "MEDIUM": [
+      { "text": "세일을 당기고 키를 반대로 돌린다.", "stability": -12, "power": -10 },
+      { "text": "세일을 아예 안 움직이고 키만 조작한다.", "stability": -10, "power": -6 },
+      { "text": "몸을 뒤쪽으로 옮겨 균형을 잡으려 한다.", "stability": -14, "power": -4 },
+      { "text": "돛줄을 고정하고 방향만 조정한다.", "stability": -11, "power": -3 },
+      { "text": "강풍 대비라고 돛줄을 더 조인다.", "stability": -13, "power": -7 }
+    ],
+    "HARD": [
+      { "text": "돛줄을 급하게 당겨 바람을 이겨보려 한다.", "stability": -20, "power": -12 },
+      { "text": "세일을 고정해 풍압을 그대로 받는다.", "stability": -15, "power": -10 },
+      { "text": "몸을 내밀지 않고 중심만 낮춘다.", "stability": -17, "power": -8 },
+      { "text": "배를 급히 돌려 바람을 피하려 한다.", "stability": -16, "power": -11 },
+      { "text": "돛줄 텐션을 더 높인다.", "stability": -14, "power": -14 },
+      { "text": "좌우로 키를 계속 크게 흔든다.", "stability": -19, "power": -9 }
+    ]
+  }
+}
