@@ -17,6 +17,7 @@ public class Wind {
     public Wind(double speed, double direction, WindSpeedChange windSpeedChange, WindConfig config) {
         this.speed = speed;
         this.direction = direction;
+        this.windSpeedChange = windSpeedChange;
         this.config = config;
     }
 
@@ -26,13 +27,17 @@ public class Wind {
 
     //시간(s)에 따른 자연변화
     public void updateNatural(Random random) {
+        WindPhase before = calculatePhase(this.speed);
+
         double dSpeed = noise(random) * config.speedVariability();
         double dDirection = noise(random) * config.directionVariability();
 
-        //현재 강풍, 중풍, 강풍인지 앞으로 바뀐 값이 강풍 중풍 약풍인지 결정해서 windspeedchange
-
         this.speed = Math.max(0, this.speed + dSpeed);
         this.direction = clampDirection(this.direction + dDirection);
+
+        WindPhase after = calculatePhase(this.speed);
+
+        this.windSpeedChange = computeSpeedChange(before, after);
     }
 
     //-0.5 ~ 0.5 값을 생성
@@ -44,5 +49,22 @@ public class Wind {
         if (deg < -45) return -45;
         if (deg > 45) return 45;
         return deg;
+    }
+
+
+    private WindPhase calculatePhase(double speed) {
+        if (speed <= WEAK_MAX) return WindPhase.WEAK;
+        if (speed >= STRONG_MIN) return WindPhase.STRONG;
+        return WindPhase.NORMAL;
+    }
+
+    private WindSpeedChange computeSpeedChange(WindPhase before, WindPhase after) {
+        if (before == after) return WindSpeedChange.NONE;
+        if (before == WindPhase.WEAK && after == WindPhase.NORMAL) return WindSpeedChange.WEAK_TO_NORMAL;
+        if (before == WindPhase.NORMAL && after == WindPhase.STRONG) return WindSpeedChange.NORMAL_TO_STRONG;
+        if (before == WindPhase.STRONG && after == WindPhase.NORMAL) return WindSpeedChange.STRONG_TO_NORMAL;
+        if (before == WindPhase.NORMAL && after == WindPhase.WEAK) return WindSpeedChange.NORMAL_TO_WEAK;
+
+        return WindSpeedChange.NONE;
     }
 }
