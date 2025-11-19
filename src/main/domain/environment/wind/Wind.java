@@ -11,23 +11,25 @@ public class Wind {
 
     private double speed;
     private double direction;
-
+    private WindSpeedChange windSpeedChange;
     private final WindConfig config;
 
-    public Wind(double speed, double direction, WindConfig config) {
+    public Wind(double speed, double direction, WindSpeedChange windSpeedChange, WindConfig config) {
         this.speed = speed;
         this.direction = direction;
         this.config = config;
     }
 
     public static Wind initalizeWind(WindConfig windConfig) {
-        return new Wind(INITIAL_WIND_SPEED, INITIAL_WIND_DIRECTION, windConfig);
+        return new Wind(INITIAL_WIND_SPEED, INITIAL_WIND_DIRECTION, WindSpeedChange.NONE, windConfig);
     }
 
     //시간(s)에 따른 자연변화
     public void updateNatural(Random random) {
         double dSpeed = noise(random) * config.speedVariability();
         double dDirection = noise(random) * config.directionVariability();
+
+        //현재 강풍, 중풍, 강풍인지 앞으로 바뀐 값이 강풍 중풍 약풍인지 결정해서 windspeedchange
 
         this.speed = Math.max(0, this.speed + dSpeed);
         this.direction = clampDirection(this.direction + dDirection);
