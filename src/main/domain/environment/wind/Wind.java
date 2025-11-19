@@ -6,12 +6,11 @@ public class Wind {
     //초기 풍향, 방향 고정
     private static final double INITIAL_WIND_SPEED = 10.0;
     private static final double INITIAL_WIND_DIRECTION = 0.0;
+    public static final double WEAK_MAX = 5.0; //약풍 기준점
+    public static final double STRONG_MIN = 15.0; //강풍 기준점
 
     private double speed;
     private double direction;
-
-    private double lastDeltaSpeed;      // 속도 변화량
-    private double lastDeltaDirection;  // 방향 변화량
 
     private final WindConfig config;
 
@@ -30,11 +29,8 @@ public class Wind {
         double dSpeed = noise(random) * config.speedVariability();
         double dDirection = noise(random) * config.directionVariability();
 
-        this.lastDeltaSpeed = dSpeed;
-        this.lastDeltaDirection = dDirection;
-
         this.speed += Math.max(0, this.speed + dSpeed);
-        this.direction = normalize(this.direction + dDirection);
+        this.direction = clampDirection(this.direction + dDirection);
     }
 
     //-0.5 ~ 0.5 값을 생성
@@ -42,43 +38,10 @@ public class Wind {
         return random.nextDouble() - 0.5;
     }
 
-    private static double normalize(double rawAngle) {
-        double angle = rawAngle % 360;
-        if (angle < 0) {
-            return angle + 360;
-        }
-        return angle;
-    }
-
-    public boolean isSpeedJump() {
-        return Math.abs(lastDeltaSpeed) >= config.speedThreshold();
-    }
-
-    public boolean isDirectionJump() {
-        return Math.abs(lastDeltaDirection) >= config.directionThreshold();
-    }
-
-    public boolean isGustTriggered(Random random) {
-        return random.nextDouble() < config.gustChance();
-    }
-
-    public boolean isLullTriggered(Random random) {
-        return random.nextDouble() < config.lullChance();
-    }
-
-    public boolean isShiftTriggered(Random random) {
-        return random.nextDouble() < config.shiftChance();
-    }
-
-    public boolean isTurbulenceTriggered(Random random) {
-        return random.nextDouble() < config.turbulenceChance();
-    }
-
-    public double getLastDeltaSpeed() {
-        return lastDeltaSpeed;
-    }
-
-    public double getLastDeltaDirection() {
-        return lastDeltaDirection;
+    private double clampDirection(double deg) {
+        // 너 규칙: -45 ~ +45도 범위 벗어나지 않기
+        if (deg < -45) return -45;
+        if (deg > 45) return 45;
+        return deg;
     }
 }
