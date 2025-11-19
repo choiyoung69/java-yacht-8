@@ -2,16 +2,12 @@ package main.domain.event.choice;
 
 public class EventOption {
     private final String message;
-    private final boolean correct;
-    private final EventEffect effect;
+    private final int power;
+    private final int stability;
 
-    public EventOption(String message, boolean correct, EventEffect effect) {
+    public EventOption(String message, int power, int stability) {
         this.message = message;
-        this.correct = correct;
-        this.effect = effect;
-    }
-
-    public EventEffect effect() {
-        return effect;
+        this.power = power;
+        this.stability = stability;
     }
 }
