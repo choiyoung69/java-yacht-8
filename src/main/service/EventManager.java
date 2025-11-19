@@ -1,7 +1,10 @@
-package main.domain.event;
+package main.service;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import main.domain.event.choice.Event;
+import main.domain.event.choice.EventOptions;
+import main.domain.event.choice.EventType;
 
 public class EventManager {
     private final Queue<Event> queue = new LinkedList<>();

@@ -1,4 +1,4 @@
-package main.domain.event;
+package main.domain.event.choice;
 
 public class EventOption {
     private final String message;

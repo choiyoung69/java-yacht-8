@@ -1,7 +1,6 @@
-package main.domain.EventTrigger;
+package main.domain.environment;
 
-import main.domain.environment.Environment;
-import main.domain.event.EventManager;
+import main.service.EventManager;
 import java.util.Random;
 
 public interface EnvironmentEventTrigger {

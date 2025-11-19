@@ -1,10 +1,9 @@
-package main.domain.EventTrigger.wind;
+package main.domain.environment.wind;
 
-import main.domain.EventTrigger.EnvironmentEventTrigger;
+import main.domain.environment.EnvironmentEventTrigger;
 import main.domain.environment.Environment;
-import main.domain.environment.wind.Wind;
-import main.domain.event.EventManager;
-import main.domain.event.EventType;
+import main.service.EventManager;
+import main.domain.event.choice.EventType;
 import java.util.Random;
 
 public class WindStateChangeTrigger implements EnvironmentEventTrigger {
