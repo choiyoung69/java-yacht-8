@@ -1,4 +1,4 @@
-package domain.event;
+package main.domain.event;
 
 import java.util.LinkedList;
 import java.util.Queue;

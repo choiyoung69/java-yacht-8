@@ -1,6 +1,6 @@
-package domain.environment;
+package main.domain.environment;
 
-import domain.environment.wind.Wind;
+import main.domain.environment.wind.Wind;
 import java.util.Random;
 
 public class Environment {

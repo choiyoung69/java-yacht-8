@@ -1,6 +1,5 @@
-package domain.event;
+package main.domain.event;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventOptions {

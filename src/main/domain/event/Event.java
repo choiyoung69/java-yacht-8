@@ -1,6 +1,4 @@
-package domain.event;
-
-import java.util.List;
+package main.domain.event;
 
 public class Event {
     private final EventType eventType;

@@ -1,4 +1,4 @@
-package domain.yacht;
+package main.domain.yacht;
 
 public class Yacht {
     private double stability;

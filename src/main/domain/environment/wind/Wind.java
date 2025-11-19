@@ -1,10 +1,10 @@
-package domain.environment.wind;
+package main.domain.environment.wind;
 
 import java.util.Random;
 
 public class Wind {
     //초기 풍향, 방향 고정
-    private static final double INITIAL_WIND_SPEED = 5.0;
+    private static final double INITIAL_WIND_SPEED = 10.0;
     private static final double INITIAL_WIND_DIRECTION = 0.0;
 
     private double speed;
@@ -33,7 +33,7 @@ public class Wind {
         this.lastDeltaSpeed = dSpeed;
         this.lastDeltaDirection = dDirection;
 
-        this.speed += Math.max(0, speed + dSpeed);
+        this.speed += Math.max(0, this.speed + dSpeed);
         this.direction = normalize(this.direction + dDirection);
     }
 

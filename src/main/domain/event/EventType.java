@@ -1,4 +1,4 @@
-package domain.event;
+package main.domain.event;
 
 public enum EventType {
     // 풍속 임계값 초과

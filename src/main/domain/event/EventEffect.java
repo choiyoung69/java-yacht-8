@@ -1,6 +1,6 @@
-package domain.event;
+package main.domain.event;
 
-import domain.yacht.Yacht;
+import main.domain.yacht.Yacht;
 
 public class EventEffect {
     private final int stabilityChange;
