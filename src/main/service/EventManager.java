@@ -1,23 +1,34 @@
 package main.service;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import main.domain.event.choice.Event;
-import main.domain.event.choice.EventOptions;
-import main.domain.event.choice.EventType;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import main.domain.event.environment.EnvironmentEvent;
+import main.domain.event.environment.EventCategory;
 
 public class EventManager {
-    private final Queue<Event> queue = new LinkedList<>();
+    private final Map<EventCategory, List<EnvironmentEvent>> eventsByCategory =
+            new EnumMap<>(EventCategory.class);
 
-    public void registerEvent(EventType eventType, String message, EventOptions eventOptions) {
-        queue.add(Event.create(eventType, message, eventOptions));
+    public EventManager() {
+        for (EventCategory category : EventCategory.values()) {
+            eventsByCategory.put(category, new ArrayList<>());
+        }
     }
 
-    public Event poll() {
-        return queue.poll();
+    public void register(EnvironmentEvent event) {
+        eventsByCategory.get(event.type().category()).add(event);
     }
 
-    public boolean hasEvent() {
-        return !queue.isEmpty();
+    public EnvironmentEvent pickOne(EventCategory category) {
+        return eventsByCategory.get(category).stream()
+                .max(Comparator.comparingInt(e -> e.type().priority()))
+                .orElse(null);
+    }
+
+    public void clear() {
+        eventsByCategory.values().forEach(List::clear);
     }
 }
