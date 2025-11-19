@@ -1,6 +1,7 @@
 package main.domain.environment.wind;
 
 import java.util.Random;
+import main.domain.event.environment.EnvironmentEventType;
 
 public class Wind {
     //초기 풍향, 방향 고정
@@ -29,8 +30,8 @@ public class Wind {
     public void updateNatural(Random random) {
         WindPhase before = calculatePhase(this.speed);
 
-        double dSpeed = noise(random) * config.speedVariability();
-        double dDirection = noise(random) * config.directionVariability();
+        double dSpeed = noise(random) * config.speedVariability();  //level에 따라 속도 변화량 다름
+        double dDirection = noise(random) * config.directionVariability(); // level에 따라 풍향 변화량 다름
 
         this.speed = Math.max(0, this.speed + dSpeed);
         this.direction = clampDirection(this.direction + dDirection);
@@ -66,5 +67,17 @@ public class Wind {
         if (before == WindPhase.NORMAL && after == WindPhase.WEAK) return WindSpeedChange.NORMAL_TO_WEAK;
 
         return WindSpeedChange.NONE;
+    }
+
+    public EnvironmentEventType speedNaturalEventType() {
+        return windSpeedChange.toEventType();
+    }
+
+    public boolean isDirectionUnderThreshold() {
+        return this.direction < -config.directionThreshold();
+    }
+
+    public boolean isDirectionOverThreshold() {
+        return this.direction > config.directionThreshold();
     }
 }

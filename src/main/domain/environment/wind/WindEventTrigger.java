@@ -2,46 +2,29 @@ package main.domain.environment.wind;
 
 import main.domain.environment.EnvironmentEventTrigger;
 import main.domain.environment.Environment;
+import main.domain.event.environment.EnvironmentEvent;
+import main.domain.event.environment.EnvironmentEventType;
 import main.service.EventManager;
-import main.domain.event.choice.EventType;
 import java.util.Random;
 
 public class WindEventTrigger implements EnvironmentEventTrigger {
-    public static final String GUST = "🌪 갑작스러운 돌풍이 몰아칩니다!";
-    public static final String LULL = "🌫 바람이 약해져 배가 느려질 수 있습니다.";
-    public static final String SHIFT = "💨 풍향이 예기치 못하게 변하려 합니다!";
-    public static final String TURBULENCE = "💥 난류로 인해 풍향과 풍속이 불안정해집니다!";
-
     @Override
-    public void apply(Environment environment, EventManager eventManager, Random random) {
+    public void apply(Environment environment, EventManager evnetManager, Random random) {
         Wind wind = environment.wind();
 
-        if (wind.isGustTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_GUST,
-                    GUST
-            );
+        //강풍 -> 중풍, 중풍 -> 약풍, 약풍 -> 중풍, 중풍 -> 강풍 변화 체크
+        EnvironmentEventType speedEvent = wind.speedNaturalEventType();
+        if (speedEvent != null) {
+            eventManager.register(new EnvironmentEvent(speedEvent));
         }
 
-        if (wind.isLullTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_LULL,
-                    LULL
-            );
+        // 2. 풍향 임계치 자연 이벤트
+        if (wind.isDirectionUnderThreshold()) {
+            eventManager.register(new EnvironmentEvent(EnvironmentEventType.WIND_DIRECTION_UNDER_THRESHOLD));
         }
 
-        if (wind.isShiftTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_RANDOM_SHIFT,
-                    SHIFT
-            );
-        }
-
-        if (wind.isTurbulenceTriggered(random)) {
-            eventManager.registerEvent(
-                    EventType.WIND_TURBULENCE,
-                    TURBULENCE
-            );
+        if (wind.isDirectionOverThreshold()) {
+            eventManager.register(new EnvironmentEvent(EnvironmentEventType.WIND_DIRECTION_OVER_THRESHOLD));
         }
     }
 }

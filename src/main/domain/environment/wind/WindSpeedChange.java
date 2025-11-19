@@ -1,11 +1,21 @@
 package main.domain.environment.wind;
 
+import main.domain.event.environment.EnvironmentEventType;
+
 public enum WindSpeedChange {
-    NONE,
+    NONE(null),
+    WEAK_TO_NORMAL(EnvironmentEventType.WIND_WEAK_TO_NORMAL),
+    NORMAL_TO_STRONG(EnvironmentEventType.WIND_NORMAL_TO_STRONG),
+    STRONG_TO_NORMAL(EnvironmentEventType.WIND_STRONG_TO_NORMAL),
+    NORMAL_TO_WEAK(EnvironmentEventType.WIND_NORMAL_TO_WEAK);
 
-    WEAK_TO_NORMAL,
-    NORMAL_TO_STRONG,
+    private final EnvironmentEventType eventType;
 
-    STRONG_TO_NORMAL,
-    NORMAL_TO_WEAK;
+    WindSpeedChange(EnvironmentEventType eventType) {
+        this.eventType = eventType;
+    }
+
+    public EnvironmentEventType toEventType() {
+        return eventType;
+    }
 }
