@@ -29,7 +29,7 @@ public class Wind {
         double dSpeed = noise(random) * config.speedVariability();
         double dDirection = noise(random) * config.directionVariability();
 
-        this.speed += Math.max(0, this.speed + dSpeed);
+        this.speed = Math.max(0, this.speed + dSpeed);
         this.direction = clampDirection(this.direction + dDirection);
     }
 
@@ -39,7 +39,6 @@ public class Wind {
     }
 
     private double clampDirection(double deg) {
-        // 너 규칙: -45 ~ +45도 범위 벗어나지 않기
         if (deg < -45) return -45;
         if (deg > 45) return 45;
         return deg;
