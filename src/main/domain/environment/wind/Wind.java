@@ -52,13 +52,14 @@ public class Wind {
         return deg;
     }
 
-
+    //현재 WindPhase 계산
     private WindPhase calculatePhase(double speed) {
         if (speed <= WEAK_MAX) return WindPhase.WEAK;
         if (speed >= STRONG_MIN) return WindPhase.STRONG;
         return WindPhase.NORMAL;
     }
 
+    //이전 phase와 현재 phase 비교하여 상태값 저장
     private WindSpeedChange computeSpeedChange(WindPhase before, WindPhase after) {
         if (before == after) return WindSpeedChange.NONE;
         if (before == WindPhase.WEAK && after == WindPhase.NORMAL) return WindSpeedChange.WEAK_TO_NORMAL;
@@ -73,11 +74,33 @@ public class Wind {
         return windSpeedChange.toEventType();
     }
 
+    /*
+    자연 발생 풍향 trigger 확인
+    */
     public boolean isDirectionUnderThreshold() {
         return this.direction < -config.directionThreshold();
     }
 
     public boolean isDirectionOverThreshold() {
         return this.direction > config.directionThreshold();
+    }
+
+    /*
+    랜덤적으로 발생하는 바람 확인
+    */
+    public boolean shouldTriggerGust(Random random) {
+        return random.nextDouble() < config.gustChance();
+    }
+
+    public boolean shouldTriggerLull(Random random) {
+        return random.nextDouble() < config.lullChance();
+    }
+
+    public boolean shouldTriggerTurbulence(Random random) {
+        return random.nextDouble() < config.turbulenceChance();
+    }
+
+    public boolean shouldTriggerRandomShift(Random random) {
+        return random.nextDouble() < config.shiftChance();
     }
 }

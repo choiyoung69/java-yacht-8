@@ -7,11 +7,8 @@ import main.domain.event.choice.EventType;
 import java.util.Random;
 
 public class WindStateChangeTrigger implements EnvironmentEventTrigger {
-    public static final String SPEED_SPIKE =  "🌬 바람이 갑자기 강해졌습니다! (변화량: %.1f m/s)";
-    public static final String DIRECTION_SHIFT = "💨 풍향이 크게 바뀌었습니다! (변화량: %.1f°)";
-
     @Override
-    public void apply(Environment environment, EventManager eventManager, Random random) {
+    public void apply(Environment environment, EventManager eventManager) {
         Wind wind = environment.wind();
 
         if (wind.isSpeedJump()) {

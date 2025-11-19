@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class WindEventTrigger implements EnvironmentEventTrigger {
     @Override
-    public void apply(Environment environment, EventManager evnetManager, Random random) {
+    public void apply(Environment environment, EventManager eventManager) {
         Wind wind = environment.wind();
 
         //강풍 -> 중풍, 중풍 -> 약풍, 약풍 -> 중풍, 중풍 -> 강풍 변화 체크
