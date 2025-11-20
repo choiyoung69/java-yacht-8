@@ -5,7 +5,6 @@ import main.domain.environment.Environment;
 import main.domain.event.environment.EnvironmentEvent;
 import main.domain.event.environment.EnvironmentEventType;
 import main.service.EventManager;
-import main.domain.event.choice.EventType;
 import java.util.Random;
 
 public class WindStateChangeTrigger implements EnvironmentEventTrigger {
