@@ -17,4 +17,16 @@ public class EventOption {
         yacht.changePower(power);
         yacht.changeStability(stability);
     }
+
+    public String message() {
+        return message;
+    }
+
+    public int power() {
+        return power;
+    }
+
+    public int stability() {
+        return stability;
+    }
 }
