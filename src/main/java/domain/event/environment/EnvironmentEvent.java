@@ -10,4 +10,8 @@ public class EnvironmentEvent {
     public EnvironmentEventType type() {
         return environmentEventType;
     }
+
+    public int priority() {
+        return environmentEventType.priority();
+    }
 }
