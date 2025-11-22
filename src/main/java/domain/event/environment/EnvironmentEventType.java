@@ -15,7 +15,12 @@ public enum EnvironmentEventType {
     WIND_GUST(EventCategory.RANDOM, EventSource.WIND, 80),
     WIND_LULL(EventCategory.RANDOM, EventSource.WIND, 30),
     WIND_TURBULENCE(EventCategory.RANDOM, EventSource.WIND, 80),
-    WIND_RANDOM_SHIFT(EventCategory.RANDOM, EventSource.WIND, 60);
+    WIND_RANDOM_SHIFT(EventCategory.RANDOM, EventSource.WIND, 60),
+
+    YACHT_STABILITY_LOW(EventCategory.INTERNAL, EventSource.YACHT, 100),
+    YACHT_SPEED_LOW(EventCategory.INTERNAL, EventSource.YACHT, 100),
+    YACHT_CAPSIZE(EventCategory.INTERNAL, EventSource.YACHT, 1000),
+    YACHT_DEAD_STOP(EventCategory.INTERNAL, EventSource.YACHT, 900);
 
     private final EventCategory category;
     private final EventSource source;
