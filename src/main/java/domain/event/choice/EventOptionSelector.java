@@ -9,15 +9,14 @@ import java.util.Random;
 public class EventOptionSelector {
 
     private static final int MAX_OPTIONS = 5;
-    private final Random random = new Random();
 
-    public List<EventOption> selectOptions(EventPackage pkg, int level) {
+    public List<EventOption> selectOptions(EventPackage pkg, int level, Random random) {
 
         //난이도 그룹 결정
         List<Difficulty> availableDifficulties = selectDifficultyGroup(level);
 
         //정답 옵션 1개 선택
-        EventOption correct = pickOneCorrect(pkg, availableDifficulties);
+        EventOption correct = pickOneCorrect(pkg, availableDifficulties, random);
 
         //같은 난이도 그룹에서 오답들 불러오기
         List<EventOption> wrongOptions = pickWrongOptions(pkg, availableDifficulties, correct);
@@ -53,7 +52,7 @@ public class EventOptionSelector {
         return list;
     }
 
-    private EventOption pickOneCorrect(EventPackage pkg, List<Difficulty> diffs) {
+    private EventOption pickOneCorrect(EventPackage pkg, List<Difficulty> diffs, Random random) {
         List<EventOption> pool = new ArrayList<>();
 
         for (Difficulty d : diffs) {

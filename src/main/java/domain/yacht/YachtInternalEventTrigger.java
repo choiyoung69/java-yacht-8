@@ -1,30 +1,27 @@
 package domain.yacht;
 
-import domain.environment.EnvironmentEventTrigger;
-import domain.event.environment.EnvironmentEvent;
 import domain.event.environment.EnvironmentEventType;
-import service.EventManager;
 
 public class YachtInternalEventTrigger {
 
-    public void apply(Yacht yacht, EventManager manager) {
+    public EnvironmentEventType apply(Yacht yacht) {
         if (yacht.stability() <= 0) {
-            manager.register(new EnvironmentEvent(EnvironmentEventType.YACHT_CAPSIZE));
-            return;
+            return EnvironmentEventType.YACHT_CAPSIZE;
         }
 
         if (yacht.power() <= 0) {
-            manager.register(new EnvironmentEvent(EnvironmentEventType.YACHT_DEAD_STOP));
-            return;
+            return EnvironmentEventType.YACHT_DEAD_STOP;
         }
 
         // 경고 이벤트
         if (yacht.stability() < 20) {
-            manager.register(new EnvironmentEvent(EnvironmentEventType.YACHT_STABILITY_LOW));
+            return EnvironmentEventType.YACHT_STABILITY_LOW;
         }
 
         if (yacht.power() < 10) {
-            manager.register(new EnvironmentEvent(EnvironmentEventType.YACHT_SPEED_LOW));
+            return EnvironmentEventType.YACHT_SPEED_LOW;
         }
+
+        return null;
     }
 }

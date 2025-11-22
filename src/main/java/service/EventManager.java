@@ -23,18 +23,6 @@ public class EventManager {
         events.get(event.type().category()).add(event);
     }
 
-    public List<EnvironmentEvent> pickForDisplay() {
-        List<EnvironmentEvent> result = new ArrayList<>();
-
-        EnvironmentEvent n = pickNatural();
-        EnvironmentEvent r = pickRandom();
-
-        if (n != null) result.add(n);
-        if (r != null) result.add(r);
-
-        return result;
-    }
-
     public EnvironmentEvent pickNatural() {
         return pickOne(EventCategory.NATURAL);
     }

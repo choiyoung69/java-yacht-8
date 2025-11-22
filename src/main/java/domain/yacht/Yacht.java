@@ -1,6 +1,7 @@
 package domain.yacht;
 
 public class Yacht {
+    private static final double FINISH_DISTANCE = 100.0;
     private double stability;
     private double power;
     private double progress;
@@ -23,5 +24,14 @@ public class Yacht {
 
     public double progress() {
         return progress;
+    }
+
+    public void update() {
+        progress += Math.max(0, power * 0.5);
+        if (progress > FINISH_DISTANCE) progress = FINISH_DISTANCE;
+    }
+
+    public boolean hasFinished() {
+        return progress >= FINISH_DISTANCE;
     }
 }

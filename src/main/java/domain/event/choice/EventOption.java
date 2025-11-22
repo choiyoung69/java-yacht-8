@@ -1,5 +1,7 @@
 package domain.event.choice;
 
+import domain.yacht.Yacht;
+
 public class EventOption {
     private final String message;
     private final int power;
@@ -9,5 +11,10 @@ public class EventOption {
         this.message = message;
         this.power = power;
         this.stability = stability;
+    }
+
+    public void apply(Yacht yacht) {
+        yacht.changePower(power);
+        yacht.changeStability(stability);
     }
 }
