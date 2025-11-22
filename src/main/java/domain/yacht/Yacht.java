@@ -12,4 +12,16 @@ public class Yacht {
     public void changePower(int delta) {
         this.power += delta;
     }
+
+    public double stability() {
+        return stability;
+    }
+
+    public double power() {
+        return power;
+    }
+
+    public double progress() {
+        return progress;
+    }
 }
