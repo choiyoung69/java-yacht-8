@@ -1,0 +1,21 @@
+{
+  "type": "YACHT_SPEED_LOW",
+  "description": "🐢 요트의 속도가 매우 낮습니다. 추진력을 잃고 있습니다.",
+
+  "correct": {
+    "EASY": [
+      { "text": "세일 각도를 좁혀 약한 바람을 모은다.", "stability": 2, "power": 8 },
+      { "text": "돛줄을 조여 풍압을 확보한다.", "stability": 2, "power": 10 }
+    ]
+  },
+
+  "wrong": {
+    "EASY": [
+      { "text": "세일을 완전히 눕힌다.", "stability": -1, "power": -5 },
+      { "text": "돛줄을 풀어 풍압을 잃는다.", "stability": -2, "power": -6 },
+      { "text": "키를 흔들어 속도를 잃는다.", "stability": -1, "power": -4 },
+      { "text": "아무 조치를 하지 않는다.", "stability": 0, "power": -5 },
+      { "text": "몸을 안쪽으로 넣어 흐름을 끊는다.", "stability": -2, "power": -3 }
+    ]
+  }
+}
