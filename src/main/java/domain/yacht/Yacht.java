@@ -4,6 +4,7 @@ public class Yacht {
     private static final double FINISH_DISTANCE = 100.0;
     private static final double DEFAULT_STABILITY = 30.0;
     private static final double DEFAULT_POWER = 20.0;
+    private static final double DEFAULT_PROGRESS= 0.0;
 
     private double stability;
     private double power;
@@ -16,7 +17,7 @@ public class Yacht {
     }
 
     public static Yacht defaultYacht() {
-
+        return new Yacht(DEFAULT_STABILITY, DEFAULT_POWER, DEFAULT_PROGRESS);
     }
 
     public void changeStability(int delta) {

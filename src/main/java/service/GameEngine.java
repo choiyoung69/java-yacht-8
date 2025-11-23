@@ -13,6 +13,7 @@ import domain.yacht.Yacht;
 import domain.yacht.YachtInternalEventTrigger;
 import dto.TickResult;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -82,27 +83,35 @@ public class GameEngine {
         option.apply(yacht);
     }
 
-    public TickResult runInternalPhase(
+    public List<TickResult> runInternalPhase(
             Yacht yacht,
             YachtInternalEventTrigger internalTrigger,
             EventPackageRepository repo,
             EventOptionSelector selector,
             int level
     ) {
-        EnvironmentEventType type = internalTrigger.apply(yacht);
+        List<EnvironmentEventType> types = internalTrigger.apply(yacht);
+        List<TickResult> results = new ArrayList<>();
 
-        if (type == null) return TickResult.none();
-
-        if (type == EnvironmentEventType.YACHT_CAPSIZE ||
-                type == EnvironmentEventType.YACHT_DEAD_STOP) {
-
-            return TickResult.gameOver(type);
+        if (types == null || types.isEmpty()) {
+            results.add(TickResult.none());
+            return results;
         }
 
-        EventPackage pkg = repo.find(type);
-        List<EventOption> options = selector.selectOptions(pkg, level, random);
+        for (EnvironmentEventType type : types) {
+            if (type == EnvironmentEventType.YACHT_CAPSIZE ||
+                    type == EnvironmentEventType.YACHT_DEAD_STOP) {
+                results.add(TickResult.gameOver(type));
+                return results;
+            }
 
-        return TickResult.internal(type, pkg.description(), options);
+            EventPackage pkg = repo.find(type);
+            List<EventOption> options = selector.selectOptions(pkg, level, random);
+
+            results.add(TickResult.internal(type, pkg.description(), options));
+        }
+
+        return results;
     }
 
     public void applyInternalChoice(Yacht yacht, EventOption option) {

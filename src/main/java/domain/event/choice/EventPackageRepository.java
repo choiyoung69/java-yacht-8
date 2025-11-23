@@ -1,6 +1,7 @@
 package domain.event.choice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import domain.event.environment.EventSource;
 import java.io.File;
 import java.util.EnumMap;
 import java.util.Map;
@@ -17,27 +18,24 @@ public class EventPackageRepository {
         loadAll(directoryPath);
     }
 
-    private void loadAll(String directoryPath) {
-        File dir = new File(directoryPath);
+    private void loadAll(String baseDir) {
+        for (EventSource source : EventSource.values()) {
 
-        if (!dir.exists() || !dir.isDirectory()) {
-            throw new IllegalArgumentException("유효하지 않은 경로입니다 " + directoryPath);
-        }
+            String dirPath = baseDir + "/" + source.name().toLowerCase();
 
-        File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
-        if (files == null) return;
+            File dir = new File(dirPath);
+            if (!dir.exists()) continue;
 
-        for (File file : files) {
-            try {
-                EventPackage pkg = mapper.readValue(file, EventPackage.class);
+            File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
+            if (files == null) continue;
 
-                pkg.correct().init();
-                pkg.wrong().init();
-
-                packages.put(pkg.type(), pkg);
-
-            } catch (Exception e) {
-                throw new RuntimeException("이벤트 패키지 로드에 실패했습니다: " + file.getName(), e);
+            for (File file : files) {
+                try {
+                    EventPackage pkg = mapper.readValue(file, EventPackage.class);
+                    packages.put(pkg.type(), pkg);
+                } catch (Exception e) {
+                    throw new RuntimeException("로드 실패: " + file.getName(), e);
+                }
             }
         }
     }

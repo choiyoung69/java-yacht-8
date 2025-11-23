@@ -1,27 +1,32 @@
 package domain.yacht;
 
 import domain.event.environment.EnvironmentEventType;
+import java.util.ArrayList;
+import java.util.List;
 
 public class YachtInternalEventTrigger {
 
-    public EnvironmentEventType apply(Yacht yacht) {
+    public List<EnvironmentEventType> apply(Yacht yacht) {
+        List<EnvironmentEventType> list = new ArrayList<>();
+
         if (yacht.stability() <= 0) {
-            return EnvironmentEventType.YACHT_CAPSIZE;
+            list.add(EnvironmentEventType.YACHT_CAPSIZE);
+            return list; // 즉시 게임오버 → 다른 것은 무시
         }
 
         if (yacht.power() <= 0) {
-            return EnvironmentEventType.YACHT_DEAD_STOP;
+            list.add(EnvironmentEventType.YACHT_DEAD_STOP);
+            return list; // 즉시 게임오버
         }
 
-        // 경고 이벤트
         if (yacht.stability() < 20) {
-            return EnvironmentEventType.YACHT_STABILITY_LOW;
+            list.add(EnvironmentEventType.YACHT_STABILITY_LOW);
         }
 
         if (yacht.power() < 10) {
-            return EnvironmentEventType.YACHT_SPEED_LOW;
+            list.add(EnvironmentEventType.YACHT_SPEED_LOW);
         }
 
-        return null;
+        return list;
     }
 }
