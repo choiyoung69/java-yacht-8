@@ -7,7 +7,7 @@ import domain.event.environment.EnvironmentEventType;
 import java.util.Random;
 import service.EventManager;
 
-public class WindStateChangeTrigger implements EnvironmentEventTrigger {
+public class WindRandomEventTrigger implements EnvironmentEventTrigger {
     @Override
     public void apply(Environment environment, EventManager eventManager, Random random) {
         Wind wind = environment.wind();

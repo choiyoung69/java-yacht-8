@@ -2,7 +2,7 @@ package service;
 
 import domain.environment.Environment;
 import domain.environment.wind.WindEventTrigger;
-import domain.environment.wind.WindStateChangeTrigger;
+import domain.environment.wind.WindRandomEventTrigger;
 import domain.event.choice.EventOption;
 import domain.event.choice.EventOptionSelector;
 import domain.event.choice.EventPackage;
@@ -57,7 +57,7 @@ public class GameEngine {
             Environment environment,
             Yacht yacht,
             EventManager eventManager,
-            WindStateChangeTrigger randomTrigger,
+            WindRandomEventTrigger randomTrigger,
             EventPackageRepository repo,
             EventOptionSelector selector,
             int level

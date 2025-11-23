@@ -15,7 +15,7 @@ public class Wind {
     private WindSpeedChange windSpeedChange;
     private final WindConfig config;
 
-    public Wind(double speed, double direction, WindSpeedChange windSpeedChange, WindConfig config) {
+    private Wind(double speed, double direction, WindSpeedChange windSpeedChange, WindConfig config) {
         this.speed = speed;
         this.direction = direction;
         this.windSpeedChange = windSpeedChange;

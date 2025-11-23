@@ -38,9 +38,9 @@ public class OutputView {
         System.out.print("레벨 입력 >>> ");
     }
 
-    public void printDifficultyConfirm(int level, String diffName) {
+    public void printDifficultyConfirm(int level) {
         System.out.println();
-        System.out.println("🔥 선택된 레벨: " + level + " (" + diffName + ")");
+        System.out.println("🔥 선택된 레벨: " );
         System.out.println("---------------------------------------");
     }
 

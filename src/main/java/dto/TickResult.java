@@ -7,19 +7,18 @@ import java.util.List;
 public class TickResult {
 
     public enum Phase {
-        NONE,       // 이벤트 없음
-        NATURAL,    // 자연 이벤트 발생
-        RANDOM,     // 랜덤 이벤트 발생
-        INTERNAL,   // 요트 내부 이벤트 발생
-        GAME_OVER   // 게임 오버
+        NONE,
+        NATURAL,
+        RANDOM,
+        INTERNAL,
+        GAME_OVER
     }
 
-    private final Phase phase;                 // 지금 어떤 phase인지
-    private final EnvironmentEventType type;   // 이벤트 종류
-    private final String description;          // 이벤트 설명
-    private final List<EventOption> options;   // 선택지 목록
+    private final Phase phase;
+    private final EnvironmentEventType type;
+    private final String description;
+    private final List<EventOption> options;
 
-    // 생성자는 private
     private TickResult(Phase phase,
                        EnvironmentEventType type,
                        String description,
@@ -50,10 +49,6 @@ public class TickResult {
         return new TickResult(Phase.GAME_OVER, type, null, null);
     }
 
-    public Phase phase() {
-        return phase;
-    }
-
     public EnvironmentEventType type() {
         return type;
     }
@@ -64,5 +59,23 @@ public class TickResult {
 
     public List<EventOption> options() {
         return options;
+    }
+
+    public int size() {
+        return options.size();
+    }
+
+    public boolean isEvent() {
+        return phase == Phase.NATURAL ||
+                phase == Phase.RANDOM ||
+                phase == Phase.INTERNAL;
+    }
+
+    public boolean isNone() {
+        return phase == Phase.NONE;
+    }
+
+    public boolean isGameOver() {
+        return phase == Phase.GAME_OVER;
     }
 }

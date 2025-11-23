@@ -47,12 +47,6 @@ public class InputView {
         }
     }
 
-    public void waitForNextTick() {
-        System.out.println();
-        System.out.print("▶ Enter를 눌러 다음 Tick 진행...");
-        scanner.nextLine();
-    }
-
     public boolean askRestart() {
         while (true) {
             System.out.print("다시 시작하시겠습니까? (y/n) >>> ");
