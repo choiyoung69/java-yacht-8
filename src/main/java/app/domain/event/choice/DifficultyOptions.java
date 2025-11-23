@@ -1,25 +1,23 @@
 package app.domain.event.choice;
 
-import java.util.EnumMap;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import java.util.Map;
 
 public class DifficultyOptions {
-    //json과 일치시키는 이름
-    private List<EventOption> EASY;
-    private List<EventOption> MEDIUM;
-    private List<EventOption> HARD;
+    @JsonProperty("EASY")
+    private List<EventOption> easy;
 
-    private Map<Difficulty, List<EventOption>> difficultyTable;
+    @JsonProperty("MEDIUM")
+    private List<EventOption> medium;
 
-    public void init() {
-        difficultyTable = new EnumMap<>(Difficulty.class);
-        difficultyTable.put(Difficulty.EASY, EASY);
-        difficultyTable.put(Difficulty.MEDIUM, MEDIUM);
-        difficultyTable.put(Difficulty.HARD, HARD);
-    }
+    @JsonProperty("HARD")
+    private List<EventOption> hard;
 
     public List<EventOption> get(Difficulty difficulty) {
-        return difficultyTable.get(difficulty);
+        return switch (difficulty) {
+            case EASY -> easy;
+            case MEDIUM -> medium;
+            case HARD -> hard;
+        };
     }
 }

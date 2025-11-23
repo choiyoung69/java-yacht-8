@@ -1,6 +1,7 @@
 package app.service;
 
 import app.domain.environment.Environment;
+import app.domain.environment.EnvironmentEventTrigger;
 import app.domain.environment.wind.WindEventTrigger;
 import app.domain.environment.wind.WindRandomEventTrigger;
 import app.domain.event.choice.EventOption;
@@ -23,30 +24,26 @@ public class GameEngine {
 
     public TickResult runNaturalPhase(
             Environment environment,
-            Yacht yacht,
             EventManager eventManager,
-            WindEventTrigger naturalTrigger,
+            EnvironmentEventTrigger naturalTrigger,
             EventPackageRepository repo,
             EventOptionSelector selector,
             int level
     ) {
-
         environment.updateNaturalAll(random);
-
         naturalTrigger.apply(environment, eventManager, random);
 
         EnvironmentEvent event = eventManager.pickNatural();
         eventManager.clear();
 
         if (event == null) {
-            yacht.update();
             return TickResult.none();
         }
 
         EventPackage pkg = repo.find(event.type());
         List<EventOption> options = selector.selectOptions(pkg, level, random);
 
-        return TickResult.natural(event.type(), pkg.description(), options);
+        return TickResult.natural(event.type(), pkg.getDescription(), options);
     }
 
     public void applyNaturalChoice(Yacht yacht, EventOption option) {
@@ -55,9 +52,8 @@ public class GameEngine {
 
     public TickResult runRandomPhase(
             Environment environment,
-            Yacht yacht,
             EventManager eventManager,
-            WindRandomEventTrigger randomTrigger,
+            EnvironmentEventTrigger randomTrigger,
             EventPackageRepository repo,
             EventOptionSelector selector,
             int level
@@ -69,14 +65,13 @@ public class GameEngine {
         eventManager.clear();
 
         if (event == null) {
-            yacht.update();
             return TickResult.none();
         }
 
         EventPackage pkg = repo.find(event.type());
         List<EventOption> options = selector.selectOptions(pkg, level, random);
 
-        return TickResult.random(event.type(), pkg.description(), options);
+        return TickResult.random(event.type(), pkg.getDescription(), options);
     }
 
     public void applyRandomChoice(Yacht yacht, EventOption option) {
@@ -108,7 +103,7 @@ public class GameEngine {
             EventPackage pkg = repo.find(type);
             List<EventOption> options = selector.selectOptions(pkg, level, random);
 
-            results.add(TickResult.internal(type, pkg.description(), options));
+            results.add(TickResult.internal(type, pkg.getDescription(), options));
         }
 
         return results;

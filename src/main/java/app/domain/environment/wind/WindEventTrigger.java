@@ -18,7 +18,7 @@ public class WindEventTrigger implements EnvironmentEventTrigger {
             eventManager.register(new EnvironmentEvent(speedEvent));
         }
 
-        // 2. 풍향 임계치 자연 이벤트
+        //풍향 임계치 자연 이벤트
         if (wind.isDirectionUnderThreshold()) {
             eventManager.register(new EnvironmentEvent(EnvironmentEventType.WIND_DIRECTION_UNDER_THRESHOLD));
         }

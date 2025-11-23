@@ -71,10 +71,6 @@ public class TickResult {
                 phase == Phase.INTERNAL;
     }
 
-    public boolean isNone() {
-        return phase == Phase.NONE;
-    }
-
     public boolean isGameOver() {
         return phase == Phase.GAME_OVER;
     }

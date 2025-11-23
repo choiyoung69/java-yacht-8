@@ -3,14 +3,16 @@ package app.domain.event.choice;
 import app.domain.yacht.Yacht;
 
 public class EventOption {
-    private final String message;
-    private final int power;
-    private final int stability;
+    private String text;
+    private int stability;
+    private int power;
 
-    public EventOption(String message, int power, int stability) {
-        this.message = message;
-        this.power = power;
+    public EventOption() {}
+
+    public EventOption(String text, int stability, int power) {
+        this.text = text;
         this.stability = stability;
+        this.power = power;
     }
 
     public void apply(Yacht yacht) {
@@ -18,15 +20,15 @@ public class EventOption {
         yacht.changeStability(stability);
     }
 
-    public String message() {
-        return message;
+    public String getText() {
+        return text;
     }
 
-    public int power() {
+    public int getPower() {
         return power;
     }
 
-    public int stability() {
+    public int getStability() {
         return stability;
     }
 }

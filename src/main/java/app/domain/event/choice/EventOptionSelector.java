@@ -55,11 +55,11 @@ public class EventOptionSelector {
         List<EventOption> pool = new ArrayList<>();
 
         for (Difficulty d : diffs) {
-            pool.addAll(pkg.correct().get(d));
+            pool.addAll(pkg.getCorrect().get(d));
         }
 
         if (pool.isEmpty()) {
-            throw new IllegalStateException("정답 옵션이 없습니다: " + pkg.type());
+            throw new IllegalStateException("정답 옵션이 없습니다: " + pkg.getType());
         }
 
         return pool.get(random.nextInt(pool.size()));
@@ -69,7 +69,7 @@ public class EventOptionSelector {
         List<EventOption> pool = new ArrayList<>();
 
         for (Difficulty d : diffs) {
-            pool.addAll(pkg.wrong().get(d));
+            pool.addAll(pkg.getWrong().get(d));
         }
         Collections.shuffle(pool);
 

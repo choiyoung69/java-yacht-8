@@ -55,66 +55,91 @@ public class GameController {
         outputView.printWelcome();
         outputView.printTutorial();
 
-        outputView.printSelectDifficulty();
-        int level = inputView.readDifficultyLevel();
-        outputView.printDifficultyConfirm(level);
+        int level = inputLevel();
 
         Wind wind = Wind.initalizeWind(WindConfigFactory.fromLevel(level));
         Environment env = Environment.defaultEnvironment(wind);
-
         Yacht yacht = Yacht.defaultYacht();
 
         while (true) {
             outputView.printYachtStatus(yacht);
 
-            TickResult natural = engine.runNaturalPhase(
-                    env, yacht, eventManager, naturalTrigger,
-                    eventRepository, selector, level
-            );
-            if (natural.isEvent()) {
-                outputView.printNaturalEvent(natural);
-                int choice = inputView.readOptionSelection(natural.size());
-                engine.applyNaturalChoice(yacht, natural.options().get(choice));
-
-                outputView.printApplyResult(natural.options().get(choice));
-            }
-
-            TickResult random = engine.runRandomPhase(
-                    env, yacht, eventManager, randomTrigger,
-                    eventRepository, selector, level
-            );
-            if (random.isEvent()) {
-                outputView.printRandomEvent(random);
-                int choice = inputView.readOptionSelection(random.size());
-                engine.applyRandomChoice(yacht, random.options().get(choice));
-                outputView.printApplyResult(random.options().get(choice));
-            }
-
-            List<TickResult> internals = engine.runInternalPhase(
-                    yacht, internalTrigger, eventRepository, selector, level
-            );
-
-            for (TickResult internal : internals) {
-                if (internal.isGameOver()) {
-                    outputView.printGameOver(internal.type());
-                    return;
-                }
-
-                if (internal.isEvent()) {
-                    outputView.printInternalEvent(internal);
-                    int choice = inputView.readOptionSelection(internal.size());
-                    engine.applyInternalChoice(yacht, internal.options().get(choice));
-                    outputView.printApplyResult(internal.options().get(choice));
-                }
+            progressNaturalEvent(env, level, yacht);
+            progressRandomEvent(env, level, yacht);
+            if (progressYachtEvent(yacht, level)) {
+                return;
             }
 
             yacht.update();
 
-            if (engine.isFinished(yacht)) {
-                outputView.printGameClear();
-                outputView.printExit();
+            if (isGameClear(yacht)) {
                 return;
             }
         }
+    }
+
+    private boolean isGameClear(Yacht yacht) {
+        if (engine.isFinished(yacht)) {
+            outputView.printGameClear();
+            outputView.printExit();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean progressYachtEvent(Yacht yacht, int level) {
+        List<TickResult> internals = engine.runInternalPhase(
+                yacht, internalTrigger, eventRepository, selector, level
+        );
+
+        for (TickResult internal : internals) {
+            if (internal.isGameOver()) {
+                outputView.printGameOver(internal.type());
+                return true;
+            }
+
+            if (internal.isEvent()) {
+                outputView.printInternalEvent(internal);
+                int choice = inputView.readOptionSelection(internal.size());
+                engine.applyInternalChoice(yacht, internal.options().get(choice));
+                outputView.printApplyResult(internal.options().get(choice));
+            }
+        }
+        return false;
+    }
+
+    private void progressRandomEvent(Environment env, int level, Yacht yacht) {
+        TickResult random = engine.runRandomPhase(
+                env, eventManager, randomTrigger,
+                eventRepository, selector, level
+        );
+        if (random.isEvent()) {
+            outputView.printRandomEvent(random);
+            int choice = inputView.readOptionSelection(random.size());
+            engine.applyRandomChoice(yacht, random.options().get(choice));
+            outputView.printApplyResult(random.options().get(choice));
+        }
+    }
+
+    private void progressNaturalEvent(Environment env, int level, Yacht yacht) {
+        TickResult natural = engine.runNaturalPhase(
+                env, eventManager, naturalTrigger,
+                eventRepository, selector, level
+        );
+
+        if (natural.isEvent()) {
+            outputView.printNaturalEvent(natural);
+            int choice = inputView.readOptionSelection(natural.size());
+            engine.applyNaturalChoice(yacht, natural.options().get(choice));
+
+            outputView.printApplyResult(natural.options().get(choice));
+        }
+    }
+
+    private int inputLevel() {
+        outputView.printSelectDifficulty();
+        int level = inputView.readDifficultyLevel();
+        outputView.printDifficultyConfirm(level);
+        return level;
     }
 }

@@ -8,19 +8,19 @@ public class EventPackage {
     private DifficultyOptions correct;
     private DifficultyOptions wrong;
 
-    public EnvironmentEventType type() {
+    public EnvironmentEventType getType() {
         return type;
     }
 
-    public String description() {
+    public String getDescription() {
         return description;
     }
 
-    public DifficultyOptions correct() {
+    public DifficultyOptions getCorrect() {
         return correct;
     }
 
-    public DifficultyOptions wrong() {
+    public DifficultyOptions getWrong() {
         return wrong;
     }
 }

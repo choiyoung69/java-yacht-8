@@ -80,16 +80,16 @@ public class OutputView {
 
         List<EventOption> options = result.options();
         for (int i = 0; i < options.size(); i++) {
-            System.out.println(" " + (i + 1) + ". " + options.get(i).message());
+            System.out.println(" " + (i + 1) + ". " + options.get(i).getText());
         }
         System.out.print("입력 >>> ");
     }
 
     public void printApplyResult(EventOption option) {
         System.out.println();
-        System.out.println("🔧 선택한 행동: " + option.message());
-        System.out.println(" → 안정도 변화: " + option.stability());
-        System.out.println(" → 속도 변화: " + option.power());
+        System.out.println("🔧 선택한 행동: " + option.getText());
+        System.out.println(" → 안정도 변화: " + option.getStability());
+        System.out.println(" → 속도 변화: " + option.getPower());
         System.out.println("---------------------------------------");
     }
 

@@ -3,6 +3,7 @@ package app.domain.event.choice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import app.domain.event.environment.EventSource;
 import java.io.File;
+import java.net.URL;
 import java.util.EnumMap;
 import java.util.Map;
 import app.domain.event.environment.EnvironmentEventType;
@@ -18,24 +19,23 @@ public class EventPackageRepository {
         loadAll(directoryPath);
     }
 
-    private void loadAll(String baseDir) {
+    private void loadAll(String basePath) {
         for (EventSource source : EventSource.values()) {
-
-            String dirPath = baseDir + "/" + source.name().toLowerCase();
+            String dirPath = basePath + "/" + source.name().toLowerCase();
 
             File dir = new File(dirPath);
             if (!dir.exists()) continue;
+            try {
+                File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
+                if (files == null) continue;
 
-            File[] files = dir.listFiles((d, name) -> name.endsWith(".json"));
-            if (files == null) continue;
-
-            for (File file : files) {
-                try {
+                for (File file : files) {
                     EventPackage pkg = mapper.readValue(file, EventPackage.class);
-                    packages.put(pkg.type(), pkg);
-                } catch (Exception e) {
-                    throw new RuntimeException("로드 실패: " + file.getName(), e);
+                    packages.put(pkg.getType(), pkg);
                 }
+
+            } catch (Exception e) {
+                throw new RuntimeException("리소스 로딩 오류: " + dirPath, e);
             }
         }
     }
