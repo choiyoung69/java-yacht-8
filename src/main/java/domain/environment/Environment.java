@@ -6,8 +6,12 @@ import java.util.Random;
 public class Environment {
     private final Wind wind;
 
-    public Environment(Wind wind) {
+    private Environment(Wind wind) {
         this.wind = wind;
+    }
+
+    public static Environment defaultEnvironment(Wind wind) {
+        return new Environment(wind);
     }
 
     public void updateNaturalAll(Random random) {

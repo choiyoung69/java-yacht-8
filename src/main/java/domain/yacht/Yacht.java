@@ -2,9 +2,22 @@ package domain.yacht;
 
 public class Yacht {
     private static final double FINISH_DISTANCE = 100.0;
+    private static final double DEFAULT_STABILITY = 30.0;
+    private static final double DEFAULT_POWER = 20.0;
+
     private double stability;
     private double power;
     private double progress;
+
+    public Yacht(double stability, double power, double progress) {
+        this.stability = stability;
+        this.power = power;
+        this.progress = progress;
+    }
+
+    public static Yacht defaultYacht() {
+
+    }
 
     public void changeStability(int delta) {
         this.stability += delta;
