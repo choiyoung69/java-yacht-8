@@ -28,7 +28,7 @@ public class EventManager {
     }
 
     public EnvironmentEvent pickRandom() {
-        return pickOne(EventCategory.RANDOM);
+        return pickOne(EventCategory.ARTIFICIAL);
     }
 
     private EnvironmentEvent pickOne(EventCategory category) {

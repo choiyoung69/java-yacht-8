@@ -14,10 +14,20 @@ public class CurrentConfigFactory {
         // 1 ~ 2
         double naturalVariability = 1.0 + t;
 
+        int periodicInterval;
+        if (level <= 3) {
+            periodicInterval = 5;        // EASY
+        } else if (level <= 7) {
+            periodicInterval = 4;        // NORMAL
+        } else {
+            periodicInterval = 3;        // HARD
+        }
+
         return new CurrentConfig(
                 strongThreshold,
                 strongDurationThreshold,
-                naturalVariability
+                naturalVariability,
+                periodicInterval
         );
     }
 }

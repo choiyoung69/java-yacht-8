@@ -6,8 +6,6 @@ import app.domain.environment.current.Current;
 import app.domain.environment.current.CurrentConfigFactory;
 import app.domain.environment.wind.Wind;
 import app.domain.environment.wind.WindConfigFactory;
-import app.domain.environment.wind.WindEventTrigger;
-import app.domain.environment.wind.WindRandomEventTrigger;
 import app.domain.event.choice.EventOptionSelector;
 import app.domain.event.choice.EventPackageRepository;
 import app.domain.yacht.Yacht;

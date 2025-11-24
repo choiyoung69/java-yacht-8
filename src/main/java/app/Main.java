@@ -3,6 +3,7 @@ package app;
 import app.controller.GameController;
 import app.domain.environment.EnvironmentEventTrigger;
 import app.domain.environment.current.CurrentEventTrigger;
+import app.domain.environment.current.CurrentPeriodicTrigger;
 import app.domain.environment.wind.WindEventTrigger;
 import app.domain.environment.wind.WindRandomEventTrigger;
 import app.domain.event.choice.EventOptionSelector;
@@ -27,7 +28,7 @@ public class Main {
                 new EventPackageRepository("src/main/resources/events");
 
         List<EnvironmentEventTrigger> naturalTriggerList = List.of(new WindEventTrigger(), new CurrentEventTrigger());
-        List<EnvironmentEventTrigger> randomTriggerList = List.of(new WindRandomEventTrigger());
+        List<EnvironmentEventTrigger> randomTriggerList = List.of(new WindRandomEventTrigger(), new CurrentPeriodicTrigger());
         YachtInternalEventTrigger internalTrigger = new YachtInternalEventTrigger();
 
         GameController controller = new GameController(

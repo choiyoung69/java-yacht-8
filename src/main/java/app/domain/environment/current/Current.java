@@ -47,4 +47,8 @@ public class Current {
     public boolean shouldTriggerStrongEvent() {
         return strongDuration >= config.strongDurationThreshold();
     }
+
+    public boolean isPeriodicReady(int counter) {
+        return counter >= config.periodicInterval();
+    }
 }

@@ -12,13 +12,14 @@ public enum EnvironmentEventType {
     WIND_DIRECTION_OVER_THRESHOLD(EventCategory.NATURAL, EventSource.WIND, 50),
 
     // Wind 랜덤 이벤트
-    WIND_GUST(EventCategory.RANDOM, EventSource.WIND, 80),
-    WIND_LULL(EventCategory.RANDOM, EventSource.WIND, 30),
-    WIND_TURBULENCE(EventCategory.RANDOM, EventSource.WIND, 80),
-    WIND_RANDOM_SHIFT(EventCategory.RANDOM, EventSource.WIND, 60),
+    WIND_GUST(EventCategory.ARTIFICIAL, EventSource.WIND, 80),
+    WIND_LULL(EventCategory.ARTIFICIAL, EventSource.WIND, 30),
+    WIND_TURBULENCE(EventCategory.ARTIFICIAL, EventSource.WIND, 80),
+    WIND_RANDOM_SHIFT(EventCategory.ARTIFICIAL, EventSource.WIND, 60),
 
     //조류 발생 이벤트
     CURRENT_STRONG_CONTINUE(EventCategory.NATURAL, EventSource.CURRENT, 30),
+    CURRENT_DIRECTION_SHIFT_PERIODIC(EventCategory.ARTIFICIAL, EventSource.CURRENT, 35),
 
     YACHT_STABILITY_LOW(EventCategory.INTERNAL, EventSource.YACHT, 100),
     YACHT_SPEED_LOW(EventCategory.INTERNAL, EventSource.YACHT, 100),
