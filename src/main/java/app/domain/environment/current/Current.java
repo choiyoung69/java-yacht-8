@@ -43,4 +43,8 @@ public class Current {
             strongDuration = 0;
         }
     }
+
+    public boolean shouldTriggerStrongEvent() {
+        return strongDuration >= config.strongDurationThreshold();
+    }
 }

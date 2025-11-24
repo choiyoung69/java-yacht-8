@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.domain.environment.Environment;
+import app.domain.environment.current.Current;
 import app.domain.environment.wind.Wind;
 import app.domain.environment.wind.WindConfigFactory;
 import app.domain.environment.wind.WindEventTrigger;
@@ -60,7 +61,8 @@ public class GameController {
         int level = inputLevel();
 
         Wind wind = Wind.initalizeWind(WindConfigFactory.fromLevel(level));
-        Environment env = Environment.defaultEnvironment(wind);
+        Current current = Current.initalizeCurrent(null)
+        Environment env = Environment.defaultEnvironment(wind, current);
         Yacht yacht = Yacht.defaultYacht();
 
         int turn = 1;
