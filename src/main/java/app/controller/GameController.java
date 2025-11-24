@@ -1,7 +1,9 @@
 package app.controller;
 
 import app.domain.environment.Environment;
+import app.domain.environment.EnvironmentEventTrigger;
 import app.domain.environment.current.Current;
+import app.domain.environment.current.CurrentConfigFactory;
 import app.domain.environment.wind.Wind;
 import app.domain.environment.wind.WindConfigFactory;
 import app.domain.environment.wind.WindEventTrigger;
@@ -26,8 +28,8 @@ public class GameController {
     private final EventOptionSelector selector;
     private final EventPackageRepository eventRepository;
 
-    private final WindEventTrigger naturalTrigger;
-    private final WindRandomEventTrigger randomTrigger;
+    private final List<EnvironmentEventTrigger> naturalTriggers;
+    private final List<EnvironmentEventTrigger> randomTriggers;
     private final YachtInternalEventTrigger internalTrigger;
 
     public GameController(
@@ -37,8 +39,8 @@ public class GameController {
             EventManager eventManager,
             EventOptionSelector selector,
             EventPackageRepository eventRepository,
-            WindEventTrigger naturalTrigger,
-            WindRandomEventTrigger randomTrigger,
+            List<EnvironmentEventTrigger> naturalTriggers,
+            List<EnvironmentEventTrigger> randomTriggers,
             YachtInternalEventTrigger internalTrigger
     ) {
         this.inputView = inputView;
@@ -47,8 +49,8 @@ public class GameController {
         this.eventManager = eventManager;
         this.selector = selector;
         this.eventRepository = eventRepository;
-        this.naturalTrigger = naturalTrigger;
-        this.randomTrigger = randomTrigger;
+        this.naturalTriggers = naturalTriggers;
+        this.randomTriggers = randomTriggers;
         this.internalTrigger = internalTrigger;
     }
 
@@ -61,7 +63,7 @@ public class GameController {
         int level = inputLevel();
 
         Wind wind = Wind.initalizeWind(WindConfigFactory.fromLevel(level));
-        Current current = Current.initalizeCurrent(null)
+        Current current = Current.initalizeCurrent(CurrentConfigFactory.fromLevel(level));
         Environment env = Environment.defaultEnvironment(wind, current);
         Yacht yacht = Yacht.defaultYacht();
 
@@ -120,7 +122,7 @@ public class GameController {
 
     private void progressRandomEvent(Environment env, int level, Yacht yacht) {
         TickResult random = engine.runRandomPhase(
-                env, eventManager, randomTrigger,
+                env, eventManager, randomTriggers,
                 eventRepository, selector, level
         );
         if (random.isEvent()) {
@@ -133,7 +135,7 @@ public class GameController {
 
     private void progressNaturalEvent(Environment env, int level, Yacht yacht) {
         TickResult natural = engine.runNaturalPhase(
-                env, eventManager, naturalTrigger,
+                env, eventManager, naturalTriggers,
                 eventRepository, selector, level
         );
 

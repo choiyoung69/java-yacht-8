@@ -18,7 +18,7 @@ public enum EnvironmentEventType {
     WIND_RANDOM_SHIFT(EventCategory.RANDOM, EventSource.WIND, 60),
 
     //조류 발생 이벤트
-    CURRENT_STRONG_CONTINUE(EventCategory.NATURAL, EventSource.CURRENT, 40),
+    CURRENT_STRONG_CONTINUE(EventCategory.NATURAL, EventSource.CURRENT, 30),
 
     YACHT_STABILITY_LOW(EventCategory.INTERNAL, EventSource.YACHT, 100),
     YACHT_SPEED_LOW(EventCategory.INTERNAL, EventSource.YACHT, 100),

@@ -1,6 +1,8 @@
 package app;
 
 import app.controller.GameController;
+import app.domain.environment.EnvironmentEventTrigger;
+import app.domain.environment.current.CurrentEventTrigger;
 import app.domain.environment.wind.WindEventTrigger;
 import app.domain.environment.wind.WindRandomEventTrigger;
 import app.domain.event.choice.EventOptionSelector;
@@ -10,6 +12,7 @@ import app.service.EventManager;
 import app.service.GameEngine;
 import app.view.InputView;
 import app.view.OutputView;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,8 +26,8 @@ public class Main {
         EventPackageRepository repo =
                 new EventPackageRepository("src/main/resources/events");
 
-        WindEventTrigger naturalTrigger = new WindEventTrigger();
-        WindRandomEventTrigger randomTrigger = new WindRandomEventTrigger();
+        List<EnvironmentEventTrigger> naturalTriggerList = List.of(new WindEventTrigger(), new CurrentEventTrigger());
+        List<EnvironmentEventTrigger> randomTriggerList = List.of(new WindRandomEventTrigger());
         YachtInternalEventTrigger internalTrigger = new YachtInternalEventTrigger();
 
         GameController controller = new GameController(
@@ -34,8 +37,8 @@ public class Main {
                 eventManager,
                 selector,
                 repo,
-                naturalTrigger,
-                randomTrigger,
+                naturalTriggerList,
+                randomTriggerList,
                 internalTrigger
         );
 

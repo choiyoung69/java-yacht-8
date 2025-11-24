@@ -25,13 +25,16 @@ public class GameEngine {
     public TickResult runNaturalPhase(
             Environment environment,
             EventManager eventManager,
-            EnvironmentEventTrigger naturalTrigger,
+            List<EnvironmentEventTrigger> naturalTriggers,
             EventPackageRepository repo,
             EventOptionSelector selector,
             int level
     ) {
         environment.updateNaturalAll(random);
-        naturalTrigger.apply(environment, eventManager, random);
+
+        for (EnvironmentEventTrigger trigger : naturalTriggers) {
+            trigger.apply(environment, eventManager, random);
+        }
 
         EnvironmentEvent event = eventManager.pickNatural();
         eventManager.clear();
@@ -53,13 +56,14 @@ public class GameEngine {
     public TickResult runRandomPhase(
             Environment environment,
             EventManager eventManager,
-            EnvironmentEventTrigger randomTrigger,
+            List<EnvironmentEventTrigger> randomTriggers,
             EventPackageRepository repo,
             EventOptionSelector selector,
             int level
     ) {
-
-        randomTrigger.apply(environment, eventManager, random);
+        for (EnvironmentEventTrigger trigger : randomTriggers) {
+            trigger.apply(environment, eventManager, random);
+        }
 
         EnvironmentEvent event = eventManager.pickRandom();
         eventManager.clear();
