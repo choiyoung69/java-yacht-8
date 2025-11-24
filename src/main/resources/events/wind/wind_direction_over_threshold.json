@@ -1,0 +1,45 @@
+{
+  "type": "WIND_DIRECTION_OVER_THRESHOLD",
+  "description": "↗ 바람이 기준 각도를 넘어 오른쪽으로 크게 휘었습니다.",
+
+  "correct": {
+    "EASY": [
+      { "text": "키를 살짝 틀어 새로운 바람 방향에 맞춘다.", "stability": 4, "power": 1 },
+      { "text": "돛줄을 약간 풀어 무리한 압력을 줄인다.", "stability": 3, "power": 1 }
+    ],
+    "MEDIUM": [
+      { "text": "세일 각도와 키 조작을 조화롭게 조정한다.", "stability": 6, "power": 2 },
+      { "text": "풍향을 빠르게 파악해 텐션을 조절한다.", "stability": 7, "power": 3 }
+    ],
+    "HARD": [
+      { "text": "키 위치와 세일 텐션을 동시에 정밀하게 제어한다.", "stability": 9, "power": 3 },
+      { "text": "변화하는 바람 흐름을 읽고 선수를 완벽하게 회전시킨다.", "stability": 8, "power": 3 }
+    ]
+  },
+
+  "wrong": {
+    "EASY": [
+      { "text": "아무것도 하지 않는다.", "stability": -4, "power": 0 },
+      { "text": "돛줄을 억지로 당긴다.", "stability": -5, "power": -2 },
+      { "text": "몸을 바깥쪽으로 이동한다.", "stability": -4, "power": -1 },
+      { "text": "세일 방향을 더 엉뚱하게 맞춘다.", "stability": -6, "power": -3 },
+      { "text": "키를 과도하게 꺾어 항로가 흐트러진다.", "stability": -7, "power": -3 }
+    ],
+
+    "MEDIUM": [
+      { "text": "풍향을 피하려고 급하게 선회한다.", "stability": -7, "power": -3 },
+      { "text": "돛줄만 조여 해결하려 한다.", "stability": -6, "power": -2 },
+      { "text": "키 조절이 늦어 선체가 흔들린다.", "stability": -6, "power": -2 },
+      { "text": "세일을 고정해서 변화에 대응하지 않는다.", "stability": -5, "power": -1 },
+      { "text": "몸의 균형을 반대로 이동한다.", "stability": -7, "power": -2 }
+    ],
+
+    "HARD": [
+      { "text": "키를 좌우로 크게 흔들어 바람을 맞추려 한다.", "stability": -9, "power": -4 },
+      { "text": "강하게 텐션을 조여 더욱 불안정해진다.", "stability": -10, "power": -4 },
+      { "text": "세일 각도 조절을 거의 하지 않는다.", "stability": -8, "power": -3 },
+      { "text": "풍향을 반대로 돌리려 한다.", "stability": -11, "power": -5 },
+      { "text": "변화에 늦게 반응한다.", "stability": -7, "power": -3 }
+    ]
+  }
+}

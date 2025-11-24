@@ -1,0 +1,21 @@
+{
+  "type": "YACHT_STABILITY_LOW",
+  "description": "⚠ 요트의 안정도가 매우 낮습니다! 전복 위험이 있습니다.",
+
+  "correct": {
+    "EASY": [
+      { "text": "몸을 바깥으로 뻗어 균형을 잡는다.", "stability": 10, "power": -1 },
+      { "text": "돛줄을 완화해 압력을 줄인다.", "stability": 12, "power": -2 }
+    ]
+  },
+
+  "wrong": {
+    "EASY": [
+      { "text": "아무것도 하지 않는다.", "stability": -10, "power": 0 },
+      { "text": "몸을 안쪽으로 넣는다.", "stability": -12, "power": -1 },
+      { "text": "돛줄을 당겨 더 바람을 받는다.", "stability": -15, "power": -3 },
+      { "text": "세일을 눕혀 역풍을 받는다.", "stability": -13, "power": -2 },
+      { "text": "키를 급하게 돌린다.", "stability": -14, "power": -1 }
+    ]
+  }
+}
