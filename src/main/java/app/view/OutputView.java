@@ -24,7 +24,6 @@ public class OutputView {
         System.out.println(" - 안정도가 0 이하 → 전복 ❌");
         System.out.println(" - 속도가 0 이하 → 정지 ❌");
         System.out.println(" - 거리를 모두 이동하면 게임 클리어! 🎉");
-        System.out.println("---------------------------------------");
     }
 
     public void printSelectDifficulty() {
@@ -40,14 +39,14 @@ public class OutputView {
     }
 
     public void printDifficultyConfirm(int level) {
-        System.out.println();
-        System.out.println("🔥 선택된 레벨: " );
-        System.out.println("---------------------------------------");
+        System.out.println("🔥 선택된 레벨: " + level);
     }
 
-    public void printTickHeader(int tick) {
+    public void printTurnHeader(int turn) {
         System.out.println();
-        System.out.println("========== 🕒 Tick " + tick + " ==========");
+        System.out.println("=======================================");
+        System.out.println("⏱  Turn " + turn);
+        System.out.println("=======================================");
     }
 
     public void printYachtStatus(Yacht yacht) {
@@ -76,6 +75,7 @@ public class OutputView {
     private void printEventDetail(TickResult result) {
         System.out.println(" 이벤트: " + result.type().name());
         System.out.println(" 설명: " + result.description());
+        System.out.println();
         System.out.println("----- 선택지를 골라주세요 -----");
 
         List<EventOption> options = result.options();
@@ -91,6 +91,7 @@ public class OutputView {
         System.out.println(" → 안정도 변화: " + option.getStability());
         System.out.println(" → 속도 변화: " + option.getPower());
         System.out.println("---------------------------------------");
+        System.out.println();
     }
 
     public void printGameClear() {

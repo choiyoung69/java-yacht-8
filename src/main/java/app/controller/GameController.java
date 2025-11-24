@@ -53,7 +53,9 @@ public class GameController {
 
     public void startGame() {
         outputView.printWelcome();
+        inputView.pauseForNextTurn();
         outputView.printTutorial();
+        inputView.pauseForNextTurn();
 
         int level = inputLevel();
 
@@ -61,7 +63,10 @@ public class GameController {
         Environment env = Environment.defaultEnvironment(wind);
         Yacht yacht = Yacht.defaultYacht();
 
+        int turn = 1;
+
         while (true) {
+            outputView.printTurnHeader(turn);
             outputView.printYachtStatus(yacht);
 
             progressNaturalEvent(env, level, yacht);
@@ -75,6 +80,9 @@ public class GameController {
             if (isGameClear(yacht)) {
                 return;
             }
+
+            inputView.pauseForNextTurn();
+            turn++;
         }
     }
 

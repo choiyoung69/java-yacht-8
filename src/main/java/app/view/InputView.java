@@ -47,23 +47,11 @@ public class InputView {
         }
     }
 
-    public boolean askRestart() {
-        while (true) {
-            System.out.print("다시 시작하시겠습니까? (y/n) >>> ");
-            String input = scanner.nextLine().trim().toLowerCase();
-
-            switch (input) {
-                case "y", "yes" -> {
-                    return true;
-                }
-                case "n", "no" -> {
-                    return false;
-                }
-                default -> {
-                    System.out.println("❗ y 또는 n으로 입력하세요.");
-                }
-            }
-        }
+    public void pauseForNextTurn() {
+        System.out.print("\n다음 턴으로 진행하려면 Enter를 누르세요...");
+        try {
+            System.in.read();
+        } catch (Exception ignored) {}
     }
 }
 
