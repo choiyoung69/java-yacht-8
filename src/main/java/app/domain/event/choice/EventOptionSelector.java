@@ -55,7 +55,10 @@ public class EventOptionSelector {
         List<EventOption> pool = new ArrayList<>();
 
         for (Difficulty d : diffs) {
-            pool.addAll(pkg.getCorrect().get(d));
+            List<EventOption> list = pkg.getCorrect().get(d);
+            if (list != null) {
+                pool.addAll(list);
+            }
         }
 
         if (pool.isEmpty()) {
@@ -69,8 +72,12 @@ public class EventOptionSelector {
         List<EventOption> pool = new ArrayList<>();
 
         for (Difficulty d : diffs) {
-            pool.addAll(pkg.getWrong().get(d));
+            List<EventOption> list = pkg.getWrong().get(d);
+            if (list != null) {
+                pool.addAll(list);
+            }
         }
+
         Collections.shuffle(pool);
 
         return pool;
