@@ -1,0 +1,52 @@
+{
+  "type": "CURRENT_STRONG_CONTINUE",
+  "description": "🌊 강한 조류가 계속해서 요트를 밀어내며 항로 유지가 어려워집니다!",
+
+  "correct": {
+    "EASY": [
+      {
+        "text": "키를 조금 더 조이고, 몸을 약간 바깥쪽으로 기울여 흐름에 맞서 안정적으로 방향을 유지한다.",
+        "stability": 10,
+        "power": -3
+      }
+    ],
+    "MEDIUM": [
+      {
+        "text": "러더 각도를 약간 더 주고 세일 밸런스를 조정해 강한 조류에 밀리지 않도록 대응한다.",
+        "stability": 13,
+        "power": -4
+      }
+    ],
+    "HARD": [
+      {
+        "text": "러더 보정과 몸의 중심 이동을 동시에 수행해 지속되는 조류 속에서도 최적의 항로를 유지한다.",
+        "stability": 16,
+        "power": -5
+      }
+    ]
+  },
+
+  "wrong": {
+    "EASY": [
+      { "text": "키를 거의 움직이지 않고 그대로 버틴다.", "stability": -18, "power": -4 },
+      { "text": "몸을 안쪽으로 넣어 균형을 잡으려 한다.", "stability": -15, "power": -3 },
+      { "text": "세일을 당겨 조류를 이겨내려고 한다.", "stability": -14, "power": -5 },
+      { "text": "흐름을 무시하고 기존 항로만 고집한다.", "stability": -12, "power": -2 }
+    ],
+    "MEDIUM": [
+      { "text": "러더를 크게 꺾어 역조류를 한 번에 넘어서려고 한다.", "stability": -16, "power": -5 },
+      { "text": "세일을 세게 조여 조류를 정면으로 받는다.", "stability": -14, "power": -6 },
+      { "text": "몸을 뒤로만 이동해 흐름을 버티려 한다.", "stability": -15, "power": -4 },
+      { "text": "러더와 세일을 동시에 고정한 채로 버틴다.", "stability": -13, "power": -3 },
+      { "text": "항로 변경 없이 직진만 시도한다.", "stability": -10, "power": -4 }
+    ],
+    "HARD": [
+      { "text": "세일을 완전히 조여 조류를 억지로 버틴다.", "stability": -20, "power": -8 },
+      { "text": "키를 양쪽으로 빠르게 흔들어 흐름을 벗어나려 한다.", "stability": -18, "power": -6 },
+      { "text": "몸을 과도하게 바깥쪽으로 기울여 균형을 무너뜨린다.", "stability": -19, "power": -7 },
+      { "text": "세일 각도를 고정한 채 조류를 정면으로 받는다.", "stability": -17, "power": -6 },
+      { "text": "선수를 급격하게 꺾어 조류를 회피하려 한다.", "stability": -16, "power": -7 },
+      { "text": "흐름을 억지로 반대로 밀어내기 위해 돛줄을 심하게 당긴다.", "stability": -15, "power": -9 }
+    ]
+  }
+}
