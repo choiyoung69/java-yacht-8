@@ -1,6 +1,0 @@
-{
-  "type": "YACHT_DEAD_STOP",
-  "description": "⛔ 요트가 완전히 멈췄습니다. 더 이상 움직일 수 없습니다.",
-  "correct": { "EASY": [] },
-  "wrong": { "EASY": [] }
-}

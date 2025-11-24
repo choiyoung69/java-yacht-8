@@ -1,6 +1,0 @@
-{
-  "type": "YACHT_CAPSIZE",
-  "description": "💥 요트가 전복되었습니다! 게임 오버입니다.",
-  "correct": { "EASY": [] },
-  "wrong": { "EASY": [] }
-}
