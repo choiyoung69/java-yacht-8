@@ -91,19 +91,19 @@
   
 ## 📸 작동 화면 
 ### 처음 화면
-![img.png](img.png)
+![img.png](image/img.png)
 
 ### 난이도 선택
-![img_1.png](img_1.png)
+![img_1.png](image/img_1.png)
 
 ### 이벤트 없을 떄
-![img_2.png](img_2.png)
+![img_2.png](image/img_2.png)
 
 ### 자연 이벤트 발생 시
-![img_3.png](img_3.png)
+![img_3.png](imgae/img_3.png)
 
 ### 랜덤 이벤트 발생 시
-![img_4.png](img_4.png)
+![img_4.png](imgae/img_4.png)
 
 ### 내부 이벤트 발생 시
-![img_5.png](img_5.png)
+![img_5.png](imgae/img_5.png)
