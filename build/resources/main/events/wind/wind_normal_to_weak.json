@@ -1,0 +1,45 @@
+{
+  "type": "WIND_NORMAL_TO_WEAK",
+  "description": "🍂 바람이 점점 약해져 배의 추진력이 떨어지고 있습니다.",
+
+  "correct": {
+    "EASY": [
+      { "text": "돛줄을 약간 풀어 약풍에서도 최대한 바람을 받는다.", "stability": 3, "power": 1 },
+      { "text": "세일 각도를 좁혀 약한 바람을 모은다.", "stability": 4, "power": 1 }
+    ],
+    "MEDIUM": [
+      { "text": "세밀한 각도 조절로 약풍 효율을 높인다.", "stability": 6, "power": 2 },
+      { "text": "풍압 감소를 예측하고 텐션을 조절한다.", "stability": 5, "power": 2 }
+    ],
+    "HARD": [
+      { "text": "약풍에서 부상각을 유지하는 정밀 조작을 한다.", "stability": 7, "power": 3 },
+      { "text": "세일 텐션을 극도로 최적화한다.", "stability": 8, "power": 3 }
+    ]
+  },
+
+  "wrong": {
+    "EASY": [
+      { "text": "아무것도 하지 않는다.", "stability": -2, "power": -1 },
+      { "text": "돛줄을 조여 바람을 잃는다.", "stability": -4, "power": -2 },
+      { "text": "몸을 바깥으로 이동한다.", "stability": -3, "power": -1 },
+      { "text": "세일을 눕혀 더 많은 바람을 잃는다.", "stability": -5, "power": -3 },
+      { "text": "키를 흔들어 항로를 흐트러뜨린다.", "stability": -3, "power": -1 }
+    ],
+
+    "MEDIUM": [
+      { "text": "바람 감소에 대응하지 않는다.", "stability": -5, "power": -2 },
+      { "text": "센 바람처럼 텐션을 조인다.", "stability": -6, "power": -3 },
+      { "text": "세일 각도가 너무 크다.", "stability": -4, "power": -2 },
+      { "text": "키를 너무 많이 틀어 속도를 잃는다.", "stability": -6, "power": -2 },
+      { "text": "몸을 안쪽으로만 이동한다.", "stability": -3, "power": -1 }
+    ],
+
+    "HARD": [
+      { "text": "약풍을 무시하고 강풍 대응을 유지한다.", "stability": -7, "power": -4 },
+      { "text": "선회를 시도해 속도를 잃는다.", "stability": -8, "power": -4 },
+      { "text": "세일을 너무 강하게 고정한다.", "stability": -6, "power": -3 },
+      { "text": "과도한 텐션 유지로 풍압을 잃는다.", "stability": -9, "power": -5 },
+      { "text": "풍향만 보고 세일 조작은 하지 않는다.", "stability": -5, "power": -2 }
+    ]
+  }
+}
